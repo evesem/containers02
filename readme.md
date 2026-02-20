@@ -22,6 +22,71 @@
 
 Использовала команды, данные в задании
 
+Далее я перезапустила виртуальную машину и приступила к установке LAMP. Вот немного процесса:
+
+![alt text](image-1.png)
+
+А также список пакетов и их назвачения:
+
+| Пакет | Для чего нужен |
+|-------|----------------|
+
+| apache2 | Сам веб-сервер. Принимает запросы от браузера и отдает страницы сайта. |
+| php | Язык программирования, на котором написаны сайты. Позволяет делать страницы динамическими. |
+| libapache2-mod-php | Связка Apache и PHP. Чтобы Apache понимал PHP-код. |
+| php-mysql | Связка PHP и базы данных. Чтобы PHP мог читать/писать данные в БД. |
+| mariadb-server | Сервер базы данных. Хранит все данные сайта (статьи, пользователей, пароли). |
+| mariadb-client | Программа для ручной работы с БД через консоль. |
+| unzip | Распаковка ZIP-архивов (например, чтобы загрузить готовый сайт). |
+
+Далее у нас установка СУБД и  WordPress
+Я ввела данные команды в терминал виртуальной машины
+
+`wget <https://files.phpmyadmin.net/phpMyAdmin/5.2.2/phpMyAdmin-5.2.2-all-languages.zip>`
+
+`wget <https://wordpress.org/latest.zip>`
+
+Создала базу данных
+
+```sql
+mysql -u root
+CREATE DATABASE wordpress_db;
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON wordpress_db.* TO 'user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+Далее создаю 2 файла
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+Добавляю строки в hosts
+
+![alt text](image-4.png)
+
+## Запуск и тестирование
+
+Выполняю команду в консоли:
+
+![alt text](image-5.png)
+
+Перезагружаю Apache
+
+![alt text](image-6.png)
+
+И проверяю доступность сайтов
+
+![alt text](image-7.png)
+
+![alt text](image-8.png)
+
+К счастью, все хорошо, и они загрузились
+
+## Вопросы
+
 1. Каким образом можно скачать файл в консоли при помощи утилиты wget?
 
 Файл скачивается командой wget `<URL>`. Например, wget `https://wordpress.org/latest.zip`.
